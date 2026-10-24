@@ -77,7 +77,7 @@ streamlit run app.py --server.headless true --server.port 8601
 输入并保留默认问题后点击 **🚀 开始分析**：
 
 ```text
-查询 2025 年 9 月华东区销售额，并和上月对比
+查询 2025 年 9 月销售额，并和上月对比
 ```
 
 预期（Mock 剧本逐步回放）：
@@ -89,7 +89,7 @@ streamlit run app.py --server.headless true --server.port 8601
    状态 / 耗时(ms)，下方小字显示风险分布（如 `low: 3 · medium: 1`）；
 4. **③ 最终答案**：Markdown 渲染的中文结论，包含统计口径（时间范围、筛选条件）；
 5. **④ 产物**：
-   - `artifacts/chart_*.svg` 在线预览（折线图：华东区月度销售额趋势）；
+   - `artifacts/chart_*.svg` 在线预览（折线图：月度销售额趋势）；
    - 若剧本调用 `export_report`，会出现 `artifacts/report_*.md|html`，可展开预览 + 下载；
 6. **⑤ 运行 Trace**：`trace_xxx` 形式的 trace_id、trace 文件路径、「查看 trace JSON」expander（含下载按钮）；
 7. **⑥ 历史 Trace 与回放**：磁盘上的 trace 列表（trace_id / 问题 / 状态 / 耗时 / 开始时间），
@@ -147,7 +147,7 @@ streamlit run app.py --server.headless true --server.port 8601
 
 ```text
 trace_id : trace_xxxxxxxxxxxx
-query    : 查询 2025 年 9 月华东区销售额，并和上月对比
+query    : 查询 2025 年 9 月销售额，并和上月对比
 status   : completed  duration: 8.3 ms
 ------------------------------------------------------------------------
 [     0.1 ms] event  agent_thought  {"iteration": 1, "parse_level": "direct", ...}
@@ -155,7 +155,7 @@ status   : completed  duration: 8.3 ms
 [     2.4 ms] tool   inspect_schema  1.2ms  ok  {"args": "{\"table\": \"sales\"}", ...}
 [...]
 answer:
-2025 年 9 月华东区销售额为……
+2025 年 9 月销售额为……
 artifacts: artifacts/chart_xxx.svg
 ```
 
@@ -192,7 +192,7 @@ streamlit run app.py --server.headless true --server.port 8601
 如果现场浏览器不方便，用 CLI 演示同一条 Agent 链路：
 
 ```bash
-python -m shuxi "查询 2025 年 9 月华东区销售额，并和上月对比，再画趋势图" --mock
+python -m shuxi "查询 2025 年 9 月销售额，并和上月对比，再画趋势图" --mock
 ```
 
 输出包含：计划表 → 每步工具调用与结果摘要 → 最终答案 → trace_id → 产物路径。

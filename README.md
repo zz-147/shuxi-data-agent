@@ -63,7 +63,7 @@ pip install -e .          # 安装 shuxi 包（之后可在任意目录 python -
 
 ```bash
 python scripts/init_demo_data.py          # 生成演示数仓 data/demo.db
-python -m shuxi "查询 2025 年 9 月华东区销售额，并和上月对比，再画趋势图" --mock
+python -m shuxi "查询 2025 年 9 月销售额，并和上月对比，再画趋势图" --mock
 ```
 
 演示模式用 `examples/mock_transcript.json` 剧本模拟模型响应，会依次调用 `inspect_schema → compute_metrics → detect_anomaly_drivers → generate_chart`，产出图表和 trace。
@@ -72,7 +72,7 @@ python -m shuxi "查询 2025 年 9 月华东区销售额，并和上月对比，
 
 ```bash
 cp .env.example .env      # 填入 DASHSCOPE_API_KEY，SHUXI_PROVIDER=dashscope
-python -m shuxi "查询 2025 年 9 月华东区销售额，并和上月对比"
+python -m shuxi "查询 2025 年 9 月销售额，并和上月对比"
 ```
 
 ### 3）Streamlit 工作台
