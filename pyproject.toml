@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shuxi-data-agent"
+version = "0.1.0"
+description = "数析 · 智能数据分析平台：自然语言 -> 受控工具 -> 结论/图表/报告，带 HITL 与全链路 Trace"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "zz-147" }]
+keywords = ["agent", "llm", "data-analysis", "react", "streamlit", "human-in-the-loop"]
+dependencies = [
+    "pandas>=2.0",
+    "matplotlib>=3.7",
+    "streamlit>=1.32",
+    "python-dotenv>=1.0",
+    "openai>=1.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+shuxi = "shuxi.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/zz-147/shuxi-data-agent"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

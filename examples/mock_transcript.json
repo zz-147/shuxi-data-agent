@@ -1,0 +1,7 @@
+[
+  "{\"thought\":\"先确认 sales 事实表的字段结构，再决定用哪些字段算销售额。\",\"plan\":[{\"step\":1,\"tool\":\"inspect_schema\",\"reason\":\"确认事实表字段与类型\"},{\"step\":2,\"tool\":\"compute_metrics\",\"reason\":\"计算 2025 年 9 月销售额并对比上月\"},{\"step\":3,\"tool\":\"detect_anomaly_drivers\",\"reason\":\"拆解销售额变化的品类贡献\"},{\"step\":4,\"tool\":\"generate_chart\",\"reason\":\"输出近 4 个月趋势图\"}],\"action\":\"inspect_schema\",\"action_input\":{\"table\":\"sales\"}}",
+  "{\"thought\":\"字段确认完毕，现在算 2025-09 销售额并和 2025-08 对比。\",\"action\":\"compute_metrics\",\"action_input\":{\"metric\":\"sales_total\",\"start_date\":\"2025-09-01\",\"end_date\":\"2025-09-30\",\"grain\":\"day\",\"compare\":\"mom\"}}",
+  "{\"thought\":\"整体销售额有了，再按品类拆变化来源，回答“为什么涨/跌”。\",\"action\":\"detect_anomaly_drivers\",\"action_input\":{\"metric\":\"sales_total\",\"period\":\"2025-09\",\"dimension\":\"category\",\"top_n\":5}}",
+  "{\"thought\":\"最后生成趋势图，便于业务直观查看近 4 个月走势。\",\"action\":\"generate_chart\",\"action_input\":{\"chart_type\":\"line\",\"metric\":\"sales_total\",\"start_date\":\"2025-06-01\",\"end_date\":\"2025-09-30\",\"grain\":\"month\",\"title\":\"Monthly Sales Trend 2025-06 ~ 2025-09\"}}",
+  "{\"thought\":\"工具结果足以支撑结论，按统计口径汇总。\",\"final_answer\":\"2025 年 9 月销售额为工具计算结果（口径：sales 表 amount 求和，order_date 在 2025-09-01~2025-09-30）。环比变化见 compute_metrics 返回的 change_pct；品类贡献已由 detect_anomaly_drivers 拆解，趋势图已生成。建议关注环比贡献最大的品类，并结合门店维度继续下钻。\"}"
+]
